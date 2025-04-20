@@ -90,100 +90,80 @@ export default function Hero() {
           </GlassPanel>
         </div>
 
-        {/* Conditionally render animated background based on performance */}
-        {!isLowPerformance && (
-          <motion.div className="absolute inset-0 z-0" style={{ opacity }}>
-            {/* Animated Lines */}
-            <motion.div className="absolute inset-0 opacity-40">
-              <motion.div
-                className="line line-h absolute w-full h-[1px] top-[20%]"
-                initial={{ opacity: 0.2 }}
-                animate={{ opacity: [0.2, 0.7, 0.2] }}
-                transition={{
-                  duration: isLowPerformance ? 12 : 8,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "easeInOut",
-                }}
-              />
-              <motion.div
-                className="line line-h absolute w-full h-[1px] top-[60%]"
-                initial={{ opacity: 0.2 }}
-                animate={{ opacity: [0.2, 0.7, 0.2] }}
-                transition={{
-                  duration: isLowPerformance ? 12 : 8,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "easeInOut",
-                  delay: 2,
-                }}
-              />
-              <motion.div
-                className="line line-v absolute w-[1px] h-full left-[30%]"
-                initial={{ opacity: 0.2 }}
-                animate={{ opacity: [0.2, 0.7, 0.2] }}
-                transition={{
-                  duration: isLowPerformance ? 12 : 8,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "easeInOut",
-                  delay: 1,
-                }}
-              />
-              <motion.div
-                className="line line-v absolute w-[1px] h-full left-[70%]"
-                initial={{ opacity: 0.2 }}
-                animate={{ opacity: [0.2, 0.7, 0.2] }}
-                transition={{
-                  duration: isLowPerformance ? 12 : 8,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "easeInOut",
-                  delay: 3,
-                }}
-              />
-            </motion.div>
-
-            {/* Vector Blobs - Reduced size on mobile */}
+        {/* Sempre renderiza um elemento de fundo básico */}
+        <div className="absolute inset-0 z-0" style={{ opacity: isLowPerformance ? 0.3 : 1 }}>
+          {/* Animated Lines - simplificados para dispositivos de baixo desempenho */}
+          <div className="absolute inset-0 opacity-40">
             <motion.div
-              className="vector w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] top-[-100px] sm:top-[-150px] md:top-[-200px] right-[-150px] sm:right-[-200px] md:right-[-300px] opacity-25"
-              style={{ y: y1 }}
-              animate={{
-                scale: [1, 1.02, 0.98, 1.01, 1],
-                x: [0, 5, -5, -10, 0],
-                y: [0, -10, 5, -5, 0],
-              }}
-              transition={{ duration: isLowPerformance ? 24 : 18, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-            />
-            <motion.div
-              className="vector w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] bottom-0 left-[-100px] sm:left-[-150px] md:left-[-200px] opacity-20"
-              style={{ y: y2 }}
-              animate={{
-                scale: [1, 0.98, 1.02, 0.99, 1],
-                x: [0, -5, 10, 5, 0],
-                y: [0, 5, -10, 10, 0],
-              }}
+              className="line line-h absolute w-full h-[1px] top-[20%]"
+              initial={{ opacity: 0.2 }}
+              animate={{ opacity: [0.2, 0.7, 0.2] }}
               transition={{
-                duration: isLowPerformance ? 24 : 18,
+                duration: isLowPerformance ? 12 : 8,
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "easeInOut",
-                delay: 4,
               }}
             />
             <motion.div
-              className="vector w-[150px] sm:w-[200px] md:w-[300px] h-[150px] sm:h-[200px] md:h-[300px] top-[250px] sm:top-[300px] md:top-[350px] right-[200px] sm:right-[300px] md:right-[400px] opacity-15"
-              animate={{
-                scale: [1, 1.01, 0.99, 1.02, 1],
-                x: [0, 10, -5, 5, 0],
-                y: [0, -5, -10, 5, 0],
-              }}
+              className="line line-h absolute w-full h-[1px] top-[60%]"
+              initial={{ opacity: 0.2 }}
+              animate={{ opacity: [0.2, 0.7, 0.2] }}
               transition={{
-                duration: isLowPerformance ? 24 : 18,
+                duration: isLowPerformance ? 12 : 8,
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "easeInOut",
-                delay: 8,
+                delay: 2,
               }}
             />
-          </motion.div>
-        )}
+          </div>
 
-        {/* Gradient Overlay - Simplified for low performance devices */}
+          {/* Vector Blobs condicionais, mas não afetam o layout principal */}
+          {!isLowPerformance && (
+            <>
+              <motion.div
+                className="vector w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] top-[-100px] sm:top-[-150px] md:top-[-200px] right-[-150px] sm:right-[-200px] md:right-[-300px] opacity-25"
+                style={{ y: y1 }}
+                animate={{
+                  scale: [1, 1.02, 0.98, 1.01, 1],
+                  x: [0, 5, -5, -10, 0],
+                  y: [0, -10, 5, -5, 0],
+                }}
+                transition={{ duration: isLowPerformance ? 24 : 18, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+              />
+              <motion.div
+                className="vector w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] bottom-0 left-[-100px] sm:left-[-150px] md:left-[-200px] opacity-20"
+                style={{ y: y2 }}
+                animate={{
+                  scale: [1, 0.98, 1.02, 0.99, 1],
+                  x: [0, -5, 10, 5, 0],
+                  y: [0, 5, -10, 10, 0],
+                }}
+                transition={{
+                  duration: isLowPerformance ? 24 : 18,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                  delay: 4,
+                }}
+              />
+              <motion.div
+                className="vector w-[150px] sm:w-[200px] md:w-[300px] h-[150px] sm:h-[200px] md:h-[300px] top-[250px] sm:top-[300px] md:top-[350px] right-[200px] sm:right-[300px] md:right-[400px] opacity-15"
+                animate={{
+                  scale: [1, 1.01, 0.99, 1.02, 1],
+                  x: [0, 10, -5, 5, 0],
+                  y: [0, -5, -10, 5, 0],
+                }}
+                transition={{
+                  duration: isLowPerformance ? 24 : 18,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                  delay: 8,
+                }}
+              />
+            </>
+          )}
+        </div>
+
+        {/* Gradient Overlay - Sempre renderizado com opacidade adaptativa */}
         <div className={`absolute inset-0 animated-gradient ${isLowPerformance ? "opacity-30" : "opacity-50"}`}></div>
       </section>
     </GestureHandler>

@@ -10,10 +10,11 @@ interface DevicePerformance {
 }
 
 export function useDevicePerformance(): DevicePerformance {
+  // Iniciar com valores que não causem problemas de renderização
   const [performance, setPerformance] = useState<DevicePerformance>({
-    isLowPerformance: true, // Default to true until we can detect
+    isLowPerformance: false, // Alterado para false como padrão
     isHighPerformance: false,
-    isMobile: true, // Default to true until we can detect
+    isMobile: false, // Alterado para false como padrão
     prefersReducedMotion: false,
   })
 

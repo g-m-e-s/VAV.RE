@@ -1,5 +1,5 @@
 {
-  "name": "my-v0-project",
+  "name": "vav-re",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -58,8 +58,8 @@
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.6",
     "zod": "^3.24.1",
-    "@emotion/is-prop-valid": "latest",
-    "framer-motion": "latest"
+    "@emotion/is-prop-valid": "^11.0.0",
+    "framer-motion": "^11.0.3"
   },
   "devDependencies": {
     "@types/node": "^22",
