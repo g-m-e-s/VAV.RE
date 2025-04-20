@@ -1,0 +1,261 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --black: #0e0e0e;
+  --white: #fafafa;
+  --accent: #32c5ff;
+  --animation-duration-standard: 3s;
+  --animation-duration-slow: 5s;
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  body {
+    @apply text-gray-900 leading-relaxed tracking-tight overflow-x-hidden font-light;
+    overscroll-behavior-y: none;
+  }
+
+  /* Define font classes */
+  .font-sora {
+    font-family: var(--font-sora);
+  }
+
+  .font-space-grotesk {
+    font-family: var(--font-space-grotesk);
+  }
+
+  .font-manrope {
+    font-family: var(--font-manrope);
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn {
+    @apply inline-block py-2 sm:py-3 px-6 sm:px-8 font-normal no-underline rounded-sm transition-all duration-500 text-sm tracking-wide touch-manipulation;
+  }
+
+  .btn-primary {
+    @apply bg-gray-900 text-white border border-gray-900 transition-all duration-300 hover:bg-gray-800 hover:border-gray-800 active:bg-gray-700;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-gray-800 border border-gray-300 hover:bg-gray-100 hover:border-gray-400 active:bg-gray-200;
+  }
+
+  .glass-effect {
+    @apply relative overflow-hidden backdrop-blur-md bg-white/30 border border-white/50 text-gray-800 hover:bg-white/40 hover:border-white/70 shadow-lg active:bg-white/50;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl md:text-5xl font-light mb-8 sm:mb-12 md:mb-16 tracking-tight;
+  }
+
+  .module-card {
+    @apply overflow-hidden transition-all duration-300 pb-2;
+  }
+}
+
+/* Add xs breakpoint for very small screens */
+@screen xs {
+  /* Extra small device styles */
+}
+
+.animated-gradient {
+  background: linear-gradient(45deg, rgba(50, 197, 255, 0.05), rgba(240, 240, 240, 0.1), rgba(50, 197, 255, 0.05));
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.vector {
+  position: absolute;
+  background-color: rgba(230, 230, 230, 0.2);
+  border-radius: 50%;
+  filter: blur(80px);
+  will-change: transform;
+}
+
+.line {
+  position: absolute;
+  background-color: rgba(230, 230, 230, 0.3);
+  transform-origin: center;
+}
+
+.line-h {
+  width: 100%;
+  height: 1px;
+}
+
+.line-v {
+  width: 1px;
+  height: 100%;
+}
+
+/* Microsoft colors animation */
+.ms-color-dot {
+  animation: msColorChange var(--animation-duration-standard) infinite;
+}
+
+@keyframes msColorChange {
+  0%,
+  100% {
+    color: #f25022; /* Microsoft Red */
+  }
+  25% {
+    color: #7fba00; /* Microsoft Green */
+  }
+  50% {
+    color: #00a4ef; /* Microsoft Blue */
+  }
+  75% {
+    color: #ffb900; /* Microsoft Yellow */
+  }
+}
+
+.glass-highlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-highlight::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  pointer-events: none;
+}
+
+/* Add touch-friendly styles */
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+/* Optimize animations for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .vector,
+  .line {
+    display: none !important;
+  }
+
+  .ms-color-dot {
+    color: #00a4ef !important; /* Microsoft Blue */
+    animation: none !important;
+  }
+}
+
+/* Low performance mode */
+.low-performance-mode {
+  --animation-duration-standard: 5s;
+  --animation-duration-slow: 8s;
+}
+
+/* Add swipe hint animation */
+.swipe-hint {
+  animation: swipeHint 2s ease-in-out infinite;
+}
+
+@keyframes swipeHint {
+  0%,
+  100% {
+    transform: translateX(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(10px);
+    opacity: 1;
+  }
+}
+
+/* Hardware acceleration for animations */
+.hardware-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 767px) {
+  .vector {
+    opacity: 0.15 !important;
+    filter: blur(40px) !important;
+  }
+
+  .line {
+    opacity: 0.2 !important;
+  }
+
+  .animated-gradient {
+    opacity: 0.3 !important;
+  }
+
+  /* Ensure content is visible on mobile */
+  .container {
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Improve mobile menu appearance */
+  .mobile-menu-open {
+    overflow: hidden !important;
+  }
+}
+
+/* Ensure text is readable on all backgrounds */
+h1,
+h2,
+h3,
+p,
+a {
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Improve mobile performance */
+@media (max-width: 767px) {
+  * {
+    will-change: auto !important;
+  }
+
+  .hardware-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+}
